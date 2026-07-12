@@ -13,19 +13,22 @@ from options_envs.envs.pinball.tasks import TASKS
 class PinballEnv(gym.Env):
     metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 30}
 
-    def __init__(self, task="default-v0", render_mode=None, max_steps=None):
+    def __init__(self, task="default-v0", render_mode=None, max_steps=None, obs_type="state"):
         super().__init__()
 
         if render_mode is not None and render_mode not in self.metadata["render_modes"]:
             raise ValueError(f"Unsupported render_mode: {render_mode}")
         if task not in TASKS:
             raise ValueError(f"Unknown Pinball task: {task}")
+        if obs_type not in ("state",):
+            raise ValueError(f"Unsupported obs_type: {obs_type}")
 
         task_config = TASKS[task]
         layout_name = task_config["layout"]
 
         self.task = task
         self.render_mode = render_mode
+        self.obs_type = obs_type
         self.layout_path = files("options_envs.envs.pinball").joinpath("assets", "layouts", layout_name)
         self.max_episode_steps = int(max_steps if max_steps is not None else task_config["max_steps"])
 
