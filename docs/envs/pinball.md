@@ -36,12 +36,32 @@ python examples/pinball/render.py outputs/my_run.mp4
 
 ## Main files
 
-```text
-env.py          implementation of the Gymnasium Pinball environment
-tasks.py        versioned task definitions
-registration.py registration of the OptionsEnv/Pinball-v0 ID
-assets/layouts/ environment layouts/configurations
-```
+| File | Description |
+|------|-------------|
+| `env.py` | Implementation of the Gymnasium Pinball environment |
+| `tasks.py` | Versioned task definitions |
+| `registration.py` | Registration of the `OptionsEnv/Pinball-v0` ID |
+| `assets/layouts/` | Environment layouts and configurations |
+
+## Default configuration
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `task` | `default-v0` | Task identifier |
+| `max_steps` | `500` | Episode horizon |
+| `step_penalty` | `-1.0` | Reward per step without thrust |
+| `thrust_penalty` | `-5.0` | Reward per step with thrust |
+| `success_reward` | `10000.0` | Reward upon reaching the target |
+| `action_space` | `Discrete(5)` | 0=right, 1=down, 2=left, 3=up, 4=no-op |
+| `observation_space` | `Box(4,)` | `[x, y, xdot, ydot]` — positions in `[0,1]`, velocities in `[-1,1]` |
+
+## Render modes
+
+| Mode | Description |
+|------|-------------|
+| `None` | No rendering (fastest) |
+| `"rgb_array"` | Returns an `(H, W, 3)` numpy array — suitable for recording or headless environments |
+| `"human"` | Opens a Pygame window displaying the pinball table in real time |
 
 ## Background and references
 
