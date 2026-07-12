@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "options-envs"
+version = "0.1.0"
+description = "Gymnasium-compatible environments for hierarchical reinforcement learning research."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gymnasium>=1.0,<2.0",
+    "numpy>=1.26,<3.0",
+    "pygame>=2.5,<3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "imageio>=2.36,<3",
+    "imageio-ffmpeg>=0.5,<1",
+    "pytest>=8,<10",
+]
+
+[tool.setuptools.packages.find]
+include = ["options_envs*"]
+
+[tool.setuptools.package-data]
+"options_envs" = ["envs/*/assets/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
