@@ -31,8 +31,8 @@ import options_envs
 env = gym.make("OptionsEnv/Pinball-v0")
 obs, info = env.reset(seed=0)
 
-print(obs.shape)   # (4,)
-print(obs.dtype)   # float32
+print(obs.shape) # (4,)
+print(obs.dtype) # float32
 ```
 
 Explicit `obs_type` parameter:
